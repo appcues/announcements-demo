@@ -77,8 +77,10 @@ $(document).ready(function() {
                 loadAnnouncementsMenu(announcementsList, option);
             }
 
-            $('#main .container.all-results code').empty();
-            $('#main .container.all-results code').text(JSON.stringify(data))
+            const resultsContainer = $('#main .container.all-results');
+            resultsContainer.children('code').empty();
+            resultsContainer.children('code').text(JSON.stringify(data))
+            resultsContainer.find('.result-call').text('GET ' + ANNOUNCEMENTS_URL(user))
             return announcementsList
         });
     }
@@ -104,6 +106,11 @@ $(document).ready(function() {
                 markSeenUrl: API_URL + data._links[MARK_SEEN].href,
                 clearSeenUrl: API_URL + data._links[CLEAR_SEEN].href
             }
+
+            const resultsContainer = $('#main .container.all-results');
+            resultsContainer.children('code').empty();
+            resultsContainer.children('code').text(JSON.stringify(data))
+            resultsContainer.find('.result-call').text('GET ' + ANNOUNCEMENT_URL(user, announcementId))
 
             loadAnnouncementItem(announcementData);
 
