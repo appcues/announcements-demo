@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Demo API</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="js/index.js"></script>
+    </head>
+
+    <body id="main">
+        <div>
+            <button class='restart'>Refresh</button>
+        </div>
+        <div class="container">
+            <div class="option">
+                <h4>Identify User</h4>
+                    <form id="identify-user">
+                        <div class="profile-fields name-fields">
+                            <label for="username">User Name</label>
+                            <input required id="username" type="text" />
+                        </div>
+                    
+                        <div class="profile-fields">
+                            <label for="color">Favorite Color</label>
+                            <select id="color">
+                                <option disabled selected value=" ">--Select--</option>
+                                <option value="red">Red</option>
+                                <option value="blue">Blue</option>
+                                <option value="yellow">Yellow</option>
+                                <option value="green">Green</option>
+                                <option value="orange">Orange</option>
+                                <option value="purple">Purple</option>
+                                <option value="black">Black</option>
+                                <option value="white">White</option>
+                            </select>
+                        </div>
+                        
+                        <div class="profile-fields">
+                            <label for="food">Favorite Food</label>
+                           <input id="food" type="text"/>
+                        </div> 
+                        <div class="profile-fields">
+                            <p>Show All Content</p>
+                            <input id="cb4" class="tgl tgl-flat" type="checkbox" />
+                            <label class="tgl-btn" for="cb4"/>
+                        </div>
+                    
+                        <div>
+                            <button type="submit">Submit</button>
+                        </div>
+                    </form>
+            </div>
+            <div class="option announcements">
+                <h4>Announcements</h4>
+                <div class="announcement-box">
+                    <div class="announcement"><span>TITLE  TEXT HERE</span>
+                    </div>
+                </div>
+                <div class="filters">
+                    <input id="filter1" class="tgl tgl-flat tgl-smol" type="checkbox" />
+                    <label class="tgl-btn" for="filter1"/>
+                </div>
+            </div>
+        </div>
+        <div class="container all-results">
+            <code></code>
+        </div>
+        <div class="announcement-opened">
+            <div class="img">
+                <img src="https://d2gk7xgygi98cy.cloudfront.net/6527-3-large.jpg" />
+            </div>
+            <p class="title">TTITLE  TEXT HERE TITLE  TEXT HERE</p>
+            <p class="bodyText">Body text</p>
+            <div class="btn-row">
+                <button class="clear-btn" type="button">Remind Me</button>
+                <button class="mark-btn" type="button">Ok got it!</button>
+            </div>
+        </div>
+    
+    </body>
+</html>

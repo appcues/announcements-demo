@@ -1,0 +1,320 @@
+* {
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
+
+.row {
+  width: 100%;
+
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  border: 1px solid lightgrey;
+  text-align: center;
+
+}
+
+.center {
+    margin: 50px auto;
+}
+
+.results {
+  border: 1px solid lightgrey;
+  padding: 30px;
+  margin: 20px;
+}
+
+img {
+  max-width: 95%;
+}
+
+.profile-fields {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 5px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600,700');
+
+html, body {
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+body {
+  font-size: 18px;
+  padding: 40px;
+}
+
+.logoimg {
+  float: right;
+  margin: 8px 10px;
+}
+
+
+button,input {
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+}
+button {
+  background-color: #EF4546;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.15s ease-out;
+}
+button:hover {
+  background-color: #ff6566;
+  box-shadow: 0 0.2em 0.35em -0.1em rgba(0,0,0,0.2);
+  transform: translateY(-0.05em);
+}
+button+button {
+  margin-left: 10px;
+}
+
+.option {
+  background-color: #eee;
+  padding: 30px;
+  margin: 1rem;
+  border: none;
+  border-radius: 4px;
+  width: 270px;
+}
+.option h4 {
+  margin-top: 0;
+}
+
+.result {
+  border-radius: 4px;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 30px 50px;
+}
+.result > h2:first-child {
+  margin-top: 0;
+  font-weight: 200;
+  font-size: 38px;
+  color: #555;
+}
+
+.build-in-appcues-cta {
+  display: block;
+  background-color: #00B2E5;
+  border: none;
+  color: white;
+  padding: 18px 24px;
+  cursor: pointer;
+  font-size: 24px;
+  margin: 25px auto;
+}
+.build-in-appcues-cta:hover {
+  background-color: #33C8FF
+}
+
+
+.profile-fields p {
+  margin: 0;
+}
+.tgl {
+  display: none;
+}
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+  box-sizing: border-box;
+}
+.tgl-btn {
+  margin: auto;
+}
+.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+  background: none;
+}
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+  background: none;
+}
+.tgl + .tgl-btn {
+  outline: 0;
+  display: block;
+  width: 4em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+.tgl + .tgl-btn:after {
+  left: 0;
+}
+.tgl + .tgl-btn:before {
+  display: none;
+}
+.tgl:checked + .tgl-btn:after {
+  left: 50%;
+}
+
+.tgl-flat + .tgl-btn {
+  padding: 2px;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  background: #fff;
+  border: 4px solid #f2f2f2;
+  border-radius: 2em;
+}
+.tgl-flat + .tgl-btn:after {
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  background: #f2f2f2;
+  content: "";
+  border-radius: 1em;
+}
+.tgl-flat:checked + .tgl-btn {
+  border: 4px solid #EF4546;
+}
+.tgl-flat:checked + .tgl-btn:after {
+  left: 50%;
+  background: #EF4546;
+}
+
+.announcement {
+    border: 1px solid rgba(170,170,170,0.1);
+    background-color: rgba(255,255,255,0.5);
+    margin: 2px 0px;
+    font-size: 14px;
+    text-align: left;
+    height: 30px;
+    text-overflow: ellipsis;
+    white-space: pre;
+    box-shadow: 5px 5px 6px -1px rgba(0,0,0,0.20);
+}
+
+.announcement>span {
+    display: inline-block;
+    width: 100%;
+    padding: 8px 10px;
+}
+
+.announcement:hover {
+    border-color: grey;
+    cursor: pointer;
+}
+
+.announcement-opened {
+    position: fixed;
+    bottom: 24px;
+    right: 4px;
+
+    width: 300px;
+    background: whitesmoke;
+    max-height: 385px;
+    -webkit-box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
+    box-shadow: 6px 6px 30px -5px rgba(0,0,0,0.75);
+    text-overflow: ellipsis;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+    cursor: default;
+}
+
+.announcement-opened .img {
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 150px;
+    min-height: 100px;
+    background: #23074d;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #cc5333, #23074d);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #cc5333, #23074d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+.announcement>span>span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    width: 90%;
+    vertical-align: middle;
+}
+
+.announcement .check {
+    height: 16px;
+    vertical-align: middle;
+}
+
+.announcement-opened .title {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+    max-width: 250px;
+    white-space: normal;
+    text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+    
+}
+
+.announcement-opened img {
+    max-width: 350px;
+    width: 350px;
+    position: relative;
+    left: -10%;
+    top: -10px;
+}
+
+.announcement-opened .bodyText {
+    margin: 10px 10px 0;
+    max-height: 120px;
+    white-space: normal;
+    overflow-y: scroll;
+    text-overflow: ellipsis;
+
+}
+
+.all-results {
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.all-results code {
+    padding: 15px 25px;
+    text-align: left;
+    width: 100%;
+    white-space: pre-wrap;
+    font-size: 13px;
+    color: grey;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+}
+
+.btn-row button {
+    border: 1px solid grey;
+    border-radius: 4px;
+    background-color: transparent;
+    padding: 5px 10px;
+    margin: 4px;
+    width: auto;
+    height: auto;
+    color: gray;
+}
+
+.btn-row button:hover {
+    cursor: pointer;
+}
