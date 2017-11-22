@@ -23,12 +23,35 @@ $(document).ready(function() {
     const MARK_SEEN = "appcues:nc_item_mark_seen";
     const CLEAR_SEEN = "appcues:nc_item_clear_seen";
 
+    const USERS = {
+        "Greg": {
+            username: "Greg",
+            color: "green",
+            food: "burgers"
+        },
+        "Marcia": {
+            username: "Marcia",
+            color: "yellow",
+            food: ""
+        },
+        "Bobby": {
+            username: "Bobby",
+            color: "blue",
+            food: "cheese"
+        },
+        "Cindy": {
+            username: "Cindy",
+            color: "purple",
+            food: "McDonalds"
+        }
+    }
+
     const identify = (user, postData) => {
         const data = JSON.stringify(postData);
         return $.post(IDENTIFY_URL(user), postData)
     }
 
-    const getAnnouncements = (user) => {
+    const getAnnouncements = (user, option) => {
 
         $.get(ANNOUNCEMENTS_URL(user))
         .done((data, textStatus, jqX) => {
@@ -51,11 +74,13 @@ $(document).ready(function() {
             });
             console.log('QUALIFIED', announcementsList)
             if (announcementsList.length > 0) {
-                loadAnnouncementsMenu(announcementsList);
+                loadAnnouncementsMenu(announcementsList, option);
             }
 
-            $('#main .container.all-results code').empty();
-            $('#main .container.all-results code').text(JSON.stringify(data))
+            const resultsContainer = $('#main .container.all-results');
+            resultsContainer.children('code').empty();
+            resultsContainer.children('code').text(JSON.stringify(data))
+            resultsContainer.find('.result-call').text('GET ' + ANNOUNCEMENTS_URL(user))
             return announcementsList
         });
     }
@@ -82,12 +107,17 @@ $(document).ready(function() {
                 clearSeenUrl: API_URL + data._links[CLEAR_SEEN].href
             }
 
+            const resultsContainer = $('#main .container.all-results');
+            resultsContainer.children('code').empty();
+            resultsContainer.children('code').text(JSON.stringify(data))
+            resultsContainer.find('.result-call').text('GET ' + ANNOUNCEMENT_URL(user, announcementId))
+
             loadAnnouncementItem(announcementData);
 
         });
     }
 
-    const loadAnnouncementsMenu = (announcements) => {
+    const loadAnnouncementsMenu = (announcements, option) => {
         $('#main .option.announcements .announcement-box').empty();
         
         const elements = announcements.map(function(item) {
@@ -121,19 +151,20 @@ $(document).ready(function() {
     const toggleSeen = function(URL) {
         return $.post(URL)
     }
+    let user;
 
     $('form#identify-user').on('submit', (e) => {
         e.preventDefault();
-        const user = $('#username').val().trim();
+        user = $('#username').val().trim();
         const color = $('#color').val();
         const food = $('#food').val().trim().toLowerCase();
-        const showAllContent = $('#cb4')[0].checked;
-
+        const hideAllAnnouncements = $('#dont-show')[0].checked;
         const postData = {
             "profile_update": {
               "user": user,
               "favorite_color": color || '',
               "favorite_food": food,
+              "should_not_show_announcements": hideAllAnnouncements
             }
         }
 
@@ -147,34 +178,49 @@ $(document).ready(function() {
             const clickedId = $(e.currentTarget).data('id');
             getAnnouncement(user, clickedId);
         })
+    })
 
-        $('#main').on('click','.announcement-opened .btn-row .mark-btn',function(e){
-            e.preventDefault();
+    $('#main').on('click', '.option .users .user', (e) => {
+        user = $(e.currentTarget).children('span').text();
+        console.log('Selected User', user)
 
-            const markUrl = $(this).attr('data-url');
+        const userDetail = $('.option .user-details');
+        userDetail.find('.username-detail').text(user);
+        userDetail.find('.color-detail').text(USERS[user].color)
+        userDetail.find('.food-detail').text(USERS[user].food)
 
-            const id = $(this).parents('.announcement-opened').attr('data-id');
-            console.log('markSeenUrl', markUrl, id)
-            toggleSeen(markUrl)
-            .done((resp) => {
-                console.log('UPDATE LIST for', user);
-                $('#main').find('.announcement-opened').toggleClass('hidden');
-                getAnnouncements(user);
-            });
+        getAnnouncements(user);
+
+        $('#main').on('click','.container .option.announcements .announcement>span', (e) => {
+            const clickedId = $(e.currentTarget).data('id');
+            getAnnouncement(user, clickedId);
         })
+    })
 
-        $('#main').on('click','.announcement-opened .btn-row .clear-btn',function(e){
-            e.preventDefault();
+    $('#main').on('click','.announcement-opened .btn-row .mark-btn',function(e){
+        e.preventDefault();
 
-            const clearUrl = $(this).attr('data-url');
-            console.log('clearSeenUrl', clearUrl)
-            toggleSeen(clearUrl)
-            .done((resp) => {
-                console.log('UPDATE LIST for ', user);
-                $('#main').find('.announcement-opened').toggleClass('hidden');
-                getAnnouncements(user);
-            });
-        })
+        const markUrl = $(this).attr('data-url');
+
+        toggleSeen(markUrl)
+        .done((resp) => {
+            console.log('UPDATE LIST for', user);
+            $('#main').find('.announcement-opened').toggleClass('hidden');
+            getAnnouncements(user);
+        });
+    })
+
+    $('#main').on('click','.announcement-opened .btn-row .clear-btn',function(e){
+        e.preventDefault();
+
+        const clearUrl = $(this).attr('data-url');
+
+        toggleSeen(clearUrl)
+        .done((resp) => {
+            console.log('UPDATE LIST for ', user);
+            $('#main').find('.announcement-opened').toggleClass('hidden');
+            getAnnouncements(user);
+        });
     })
 
 });

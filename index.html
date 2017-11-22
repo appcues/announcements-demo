@@ -3,19 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <title>Demo API</title>
-
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
         <link rel="stylesheet" href="css/style.css">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script src="js/index.js"></script>
     </head>
 
     <body id="main">
-        <div>
-            <button class='restart'>Refresh</button>
-        </div>
         <div class="container">
             <div class="option">
-                <h4>Identify User</h4>
+                <h4>Identify New User</h4>
                     <form id="identify-user">
                         <div class="profile-fields name-fields">
                             <label for="username">User Name</label>
@@ -40,11 +37,13 @@
                         <div class="profile-fields">
                             <label for="food">Favorite Food</label>
                            <input id="food" type="text"/>
-                        </div> 
-                        <div class="profile-fields">
-                            <p>Show All Content</p>
-                            <input id="cb4" class="tgl tgl-flat" type="checkbox" />
-                            <label class="tgl-btn" for="cb4"/>
+                        </div>
+                        <div class="filters">
+                            <div>
+                                <p>Don't Show</p>
+                                <input id="dont-show" class="tgl tgl-flat" type="checkbox" value="dont-show"/>
+                                <label class="tgl-btn" for="dont-show"/>
+                            </div>
                         </div>
                     
                         <div>
@@ -52,27 +51,49 @@
                         </div>
                     </form>
             </div>
+            <div class="option">
+                <h4>Select Existing User</h4>
+                <div class="users">
+                    <div class="user">
+                        <div class="icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
+                        <span>Greg</span>
+                    </div>
+                    <div class="user">
+                        <div class="icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
+                        <span>Marcia</span>
+                    </div>
+                    <div class="user">
+                        <div class="icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
+                        <span>Bobby</span>
+                    </div>
+                    <div class="user">
+                        <div class="icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
+                        <span>Cindy</span>
+                    </div>
+                </div>
+                <div class="user-details">
+                    <p>Username: <span class="username-detail"></span></p>
+                    <p>Favorite Color: <span class="color-detail"></span></p>
+                    <p>Favorite Food: <span class="food-detail"></span></p>
+                </div>
+            </div>
             <div class="option announcements">
                 <h4>Announcements</h4>
                 <div class="announcement-box">
-                    <div class="announcement"><span>TITLE  TEXT HERE</span>
-                    </div>
-                </div>
-                <div class="filters">
-                    <input id="filter1" class="tgl tgl-flat tgl-smol" type="checkbox" />
-                    <label class="tgl-btn" for="filter1"/>
+
                 </div>
             </div>
         </div>
         <div class="container all-results">
+            <p>API Call: <span class="result-call"></span></p>
             <code></code>
         </div>
-        <div class="announcement-opened">
+        <div class="announcement-opened hidden">
             <div class="img">
                 <img src="https://d2gk7xgygi98cy.cloudfront.net/6527-3-large.jpg" />
             </div>
-            <p class="title">TTITLE  TEXT HERE TITLE  TEXT HERE</p>
-            <p class="bodyText">Body text</p>
+            <p class="title"></p>
+            <p class="bodyText"></p>
             <div class="btn-row">
                 <button class="clear-btn" type="button">Remind Me</button>
                 <button class="mark-btn" type="button">Ok got it!</button>
