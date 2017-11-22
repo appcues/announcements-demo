@@ -134,9 +134,6 @@ $(document).ready(function() {
         const announcementContainerIsOpen = !announcementContainer.hasClass('hidden');
         const announcementCurrentId = announcementContainer.attr('data-id');
         const isSelectedChanged = announcement.id !== announcementCurrentId;
-        if (!isSelectedChanged && announcementContainerIsOpen) {
-            announcementContainer.addClass('hidden');
-        }
 
         announcementContainer.attr('data-id', announcement.id);
         announcementContainer.find('.img img').attr('src', announcement.imgUrl);
@@ -145,7 +142,14 @@ $(document).ready(function() {
         announcementContainer.find('.btn-row .mark-btn').attr('data-url', announcement.markSeenUrl);
         announcementContainer.find('.btn-row .clear-btn').attr('data-url', announcement.clearSeenUrl);
 
-        announcementContainer.toggleClass('hidden')
+        if (!isSelectedChanged && announcementContainerIsOpen) {
+            announcementContainer.addClass('hidden');
+        } else if (isSelectedChanged && announcementContainerIsOpen) {
+            return;
+        } else {
+            announcementContainer.toggleClass('hidden')
+        }
+
     }
 
     const toggleSeen = function(URL) {
@@ -173,11 +177,11 @@ $(document).ready(function() {
             console.log('IDENTIFIED', postData)
             getAnnouncements(user);
         });
+    })
 
-        $('#main').on('click','.container .option.announcements .announcement>span', (e) => {
-            const clickedId = $(e.currentTarget).data('id');
-            getAnnouncement(user, clickedId);
-        })
+    $('#main').on('click','.container .option.announcements .announcement>span', (e) => {
+        const clickedId = $(e.currentTarget).data('id');
+        getAnnouncement(user, clickedId);
     })
 
     $('#main').on('click', '.option .users .user', (e) => {
@@ -190,11 +194,6 @@ $(document).ready(function() {
         userDetail.find('.food-detail').text(USERS[user].food)
 
         getAnnouncements(user);
-
-        $('#main').on('click','.container .option.announcements .announcement>span', (e) => {
-            const clickedId = $(e.currentTarget).data('id');
-            getAnnouncement(user, clickedId);
-        })
     })
 
     $('#main').on('click','.announcement-opened .btn-row .mark-btn',function(e){
