@@ -195,8 +195,6 @@ $(document).ready(function() {
 
         const markUrl = $(this).attr('data-url');
 
-        const id = $(this).parents('.announcement-opened').attr('data-id');
-        console.log('markSeenUrl', markUrl, id)
         toggleSeen(markUrl)
         .done((resp) => {
             console.log('UPDATE LIST for', user);
@@ -209,7 +207,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         const clearUrl = $(this).attr('data-url');
-        console.log('clearSeenUrl', clearUrl)
+
         toggleSeen(clearUrl)
         .done((resp) => {
             console.log('UPDATE LIST for ', user);
