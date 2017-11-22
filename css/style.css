@@ -326,7 +326,7 @@ background: linear-gradient(to right, #cc5333, #23074d); /* W3C, IE 10+/ Edge, F
 }
 
 .all-results p {
-  text-align: right;
+  text-align: left;
   font-size: 14px;
   position: sticky;
   top: 0px;
