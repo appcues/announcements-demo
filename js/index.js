@@ -122,7 +122,7 @@ $(document).ready(function() {
         
         const elements = announcements.map(function(item) {
 
-            const checkMark = '<img class="check ' + (item.seen ? '' : 'hidden') + '" src="http://findicons.com/files/icons/767/wp_woothemes_ultimate/128/checkmark.png" />';
+            const checkMark = '<img class="check ' + (item.seen ? '' : 'hidden') + '" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Check_icon-72a7cf.svg" />';
             return '<div class="announcement"><span data-id="' + item.id + '"><span>' + item.title + '</span>' + checkMark + '</span></div>';
         });
 
