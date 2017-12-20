@@ -8,14 +8,14 @@ $(document).ready(function() {
     // "https://api.appcues.com"
     // 30401
 
-    const API_URL = "https://api-staging.appcues.com";
-    const ACCOUNT_ID = 14538;
+    const API_URL = "https://api.appcues.com";
+    const ACCOUNT_ID = 30401;
 
     const IDENTIFY_URL = (user) => {
         return API_URL + "/v1/accounts/" + ACCOUNT_ID + "/users/" + user + "/activity"
     };
     const ANNOUNCEMENTS_URL = (user) => {
-        return API_URL + "/v1/accounts/" + ACCOUNT_ID + "/users/" + user + "/nc?url=" + window.location.href;
+        return API_URL + "/v1/accounts/" + ACCOUNT_ID + "/users/" + user + "/nc";
     };
     const ANNOUNCEMENT_URL = (user, announcementId) => {
         return API_URL + "/v1/accounts/" + ACCOUNT_ID + "/users/" + user + "/nc/items/" + announcementId;
